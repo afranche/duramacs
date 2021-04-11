@@ -468,27 +468,39 @@ keybindings in this case, even to add some.
 
 (setq exwm-input-global-keys
       `(
-        ([?\s-r] . counsel-linux-app)
+        ;; Workspaces
         ([?\s-w] . exwm-workspace-switch)
         ([?\s-s] . exwm-workspace-switch-to-buffer)
-        ([?\s-w] . exwm-workspace-switch)
         ([?\s-q] . kill-current-buffer)
+
+        ;; Window Movement
         ([?\s-h] . evil-window-left)
         ([?\s-j] . evil-window-bottom)
         ([?\s-k] . evil-window-top)
         ([?\s-l] . evil-window-right)
-        ([?\s-d] . dired)
+
         ([?\s-m] . doom/window-maximize-buffer)
         ([?\s-c] . exwm-input-send-next-key)
+
+        ;; TODO: dired -> C-s-SPC
+        ;; TODO: counsel -> M-s-SPC
+        ([?\s-d] . dired)
+        ([?\s-r] . counsel-linux-app)
         ([?\s- ] . find-file)
+
+        ;; Return key shortcuts ("Quick access ones")
+        ([C-M-s-return] . (lambda () (interactive) (duramacs/runshortcut "betterlockscreen -l dimblur")))
         ([C-s-return] . (lambda () (interactive) (duramacs/run-firefox-for-project)))
         ([M-s-return] . (lambda () (interactive) (duramacs/run-firefox)))
         ([s-return] . (lambda () (interactive) (duramacs/runshortcut "alacritty")))
-        ([?\s-p] . (lambda () (interactive) (duramacs/runshortcut "betterlockscreen -l dimblur")))
+
+        ;; Audio
         ([XF86AudioMute] . (lambda () (interactive) (duramacs/runshortcut "pactl set-sink-mute @DEFAULT_SINK@ toggle")))
         ([XF86AudioLowerVolume] . (lambda () (interactive) (duramacs/runshortcut "pactl set-sink-volume @DEFAULT_SINK@ -5%")))
         ([XF86AudioRaiseVolume] . (lambda () (interactive) (duramacs/runshortcut "pactl set-sink-volume @DEFAULT_SINK@ +5%")))
         ([XF86AudioMicMute] . (lambda () (interactive) (duramacs/runshortcut "pactl set-source-mute @DEFAULT_SINK@ toggle")))
+
+        ;; Brightness settings
         ([XF86MonBrightnessDown] . (lambda () (interactive) (duramacs/runshortcut "light -U 20")))
         ([XF86MonBrightnessUp] . (lambda () (interactive) (duramacs/runshortcut "light -A 20")))
         ))
