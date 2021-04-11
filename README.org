@@ -4,10 +4,10 @@
 #+STARTUP: inlineimages nofold
 
 
-[[https://github.com/hlissner/doom-emacs][https://img.shields.io/badge/Framework-Doom%20Emacs-blueviolet?style=for-the-badge.svg]]
-[[https://github.com/afranche/cornflakes][https://img.shields.io/badge/Runs%20on-NixOS-blue?style=for-the-badge.svg]]
-[[https://github.com/afranche/cornflakes][https://img.shields.io/badge/Runs%20on-WSL2-blue?style=for-the-badge.svg]]
-[[https://github.com/ch11ng/exwm/][https://img.shields.io/badge/WM-EXWM-fcc624?style=for-the-badge.svg]]
+[[https://github.com/hlissner/doom-emacs][https://img.shields.io/badge/Framework-Doom%20Emacs-blueviolet.svg?style=for-the-badge&logo=gnu%20emacs]]
+[[https://github.com/ch11ng/exwm/][https://img.shields.io/badge/WM-EXWM-fcc624.svg?style=for-the-badge&logo=linux]]
+[[https://github.com/afranche/cornflakes][https://img.shields.io/badge/Runs%20on-NixOS-blue.svg?style=for-the-badge&logo=nixos]]
+[[https://github.com/afranche/cornflakes][https://img.shields.io/badge/Runs%20on-WSL2-blue.svg?style=for-the-badge&logo=powershell]]
 
 Duramacs is an Emacs configuration for it to be a general productivity tool,
 becoming a window manager when run graphically. It makes use of [[https://github.com/hlissner/doom-emacs][Doom Emacs]] to
