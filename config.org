@@ -426,12 +426,35 @@ keep the keybindings free of lambdas cluttering the readability.
 
 (defun duramacs/runhook (cmd)
   (duramacs/runcmd "duramacs/hook" cmd))
+#+end_src
 
+*** Firefox
 
-(defun duramacs/create-firefox-profile-after-new-project ()
-  (start-process-shell-command "firefox" nil (concat "firefox -CreateProfile -no-remote " (projectile-project-name))))
+I'm someone who loses track of his work or focus very easily. As such
+one of my concerns is to avoid losing myself especially on my worst
+enemy (hello web browser). By making use of [[https://github.com/bbatsov/projectile][Projectile]], I'm setting
+Firefox so it creates a different profile for each project I'm opening.
 
-(add-hook 'projectile-after-switch-project-hook 'duramacs/create-firefox-profile-after-new-project)
+Having 1 profile per project allows me to get a browsing experience dedicated
+to a project I'm working on. I can't lose myself as my browser will be linked
+to browsing I perform for a particular task. I still keep the default profile
+as a mean for a default experience as sometimes, some "topicless" browsing is
+required.
+
+#+begin_src emacs-lisp :tangle config.el
+
+(defun duramacs/create-firefox-profile-from-project ()
+  :; Evaluate if the
+  (duramacs/runhook (concat "firefox -CreateProfile -no-remote " (projectile-project-name))))
+
+(defun duramacs/run-firefox ()
+  (duramacs/runshortcut "firefox -P default"))
+
+(defun duramacs/run-firefox-for-project ()
+  (duramacs/runshortcut (concat "firefox -P " (projectile-project-name))))
+
+(add-hook 'projectile-after-switch-project-hook
+          #'duramacs/create-firefox-profile-from-project)
 #+end_src
 
 *** Keybindings
@@ -458,10 +481,8 @@ keybindings in this case, even to add some.
         ([?\s-m] . doom/window-maximize-buffer)
         ([?\s-c] . exwm-input-send-next-key)
         ([?\s- ] . find-file)
-        ([C-s-return] . (lambda ()
-                          (interactive)
-                          (start-process-shell-command "firefox" nil (concat "firefox -P " projectile-project-name))))
-        ([M-s-return] . (lambda () (interactive) (duramacs/runshortcut "firefox -P default")))
+        ([C-s-return] . (lambda () (interactive) (duramacs/run-firefox-for-project)))
+        ([M-s-return] . (lambda () (interactive) (duramacs/run-firefox)))
         ([s-return] . (lambda () (interactive) (duramacs/runshortcut "alacritty")))
         ([?\s-p] . (lambda () (interactive) (duramacs/runshortcut "betterlockscreen -l dimblur")))
         ([XF86AudioMute] . (lambda () (interactive) (duramacs/runshortcut "pactl set-sink-mute @DEFAULT_SINK@ toggle")))
