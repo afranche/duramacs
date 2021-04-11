@@ -1,0 +1,39 @@
+#+TITLE: Duramacs
+#+AUTHOR: Anouar Aissaoui
+#+EMAIL: anouar.aissaoui@pm.me
+#+STARTUP: inlineimages nofold
+
+
+[[https://github.com/hlissner/doom-emacs][https://img.shields.io/badge/Framework-Doom%20Emacs-blueviolet?style=for-the-badge&logo=gnu%20emacs]]
+[[https://github.com/afranche/cornflakes][https://img.shields.io/badge/Runs%20on-NixOS-blue?style=for-the-badge&logo=nixos]]
+[[https://github.com/afranche/cornflakes][https://img.shields.io/badge/Runs%20on-WSL2-blue?style=for-the-badge&logo=powershell]]
+[[https://github.com/ch11ng/exwm/][https://img.shields.io/badge/WM-EXWM-fcc624?style=for-the-badge&logo=linux]]
+
+Duramacs is an Emacs configuration for it to be a general productivity tool,
+becoming a window manager when run graphically. It makes use of [[https://github.com/hlissner/doom-emacs][Doom Emacs]] to
+keep the configuration minimalistic and simple for people who are starting Emacs.
+I do.
+
+A wise warning would be to tell you this is a very early configuration, there's
+probably a lot more better ways to do some things in this configuration and to
+make it more performant. I'm still learning the ELisp way so don't hesitate if
+you have knowledge and corrections to provide me!
+
+* Rationale
+
+In the beginning, I was a vim user. Then, I progressively moved to VSCodium then
+PyCharm. What I lacked with all of these was the ability to gather my tools in
+one place, whether it be my browser, terminal, text editor, organisation tools...
+
+In the meantime, I also made the move to NixOS which has become my main OS for
+everything. The fact NixOS allowed me to centralize my configuration in one
+place pushed me even more in the direction of Emacs, where a friend of mine
+introduced me to Org mode back in a while. My main mantra for configuration is
+it has to be "just enough" for what you need to do, otherwise it's often
+overengineering (or ricing but I like that part).
+
+So, there it is! A starter Emacs configuration for the vimmer I was.
+
+* Quickstart
+
+~git clone https://github.com/afranche/duramacs.git ~/.doom.d~

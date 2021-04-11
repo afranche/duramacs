@@ -1,12 +1,8 @@
-:DOC-CONFIG:
-#+property: header-args :emacs-lisp :tangle config.el
-#+property: header-args :mkdirp yes :comments no
-#+startup: fold
-:END:
-
-#+title: Duramacs
-#+author: Anouar Aissaoui
-#+email: anouar.aissaoui@pm.me
+#+TITLE: Duramacs
+#+AUTHOR: Anouar Aissaoui
+#+EMAIL: anouar.aissaoui@pm.me
+#+PROPERTY: header-args :emacs-lisp :tangle config.el
+#+STARTUP: fold
 
 ** Introduction
 
@@ -17,6 +13,24 @@ This configuration is heavily borrowed from [[gitlab.com/zzamboni/dot-doom]].
 If you seek to learn how to produce yourself a nice and tidy Orgified emacs
 configuration, I suggest you take a look at his configuration. Oh and it's
 running using [[github.com/hlissner/doom-emacs]].
+
+
+** Table of Contents :TOC_3:noexport:
+  - [[#introduction][Introduction]]
+  - [[#rationales][Rationales]]
+    - [[#doom-emacs-][Doom Emacs ?]]
+    - [[#emacs-as-a-window-manager-][Emacs as a Window Manager ?]]
+  - [[#config-file-headers][Config file headers]]
+  - [[#doom-modules][DOOM Modules]]
+  - [[#appearance][Appearance]]
+    - [[#graphical-interface][Graphical interface]]
+  - [[#identity][Identity]]
+  - [[#window-management][Window Management]]
+    - [[#shortcuts][Shortcuts]]
+    - [[#firefox][Firefox]]
+    - [[#keybindings][Keybindings]]
+    - [[#randr][RandR]]
+    - [[#enable-the-configuration][Enable the configuration]]
 
 ** Rationales
 
