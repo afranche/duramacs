@@ -387,6 +387,21 @@ Our configuration begins with
 (package! exwm-edit)
 #+end_src
 
+To run commands, I prefer to define shortcuts functions in order to
+keep the keybindings free of lambdas cluttering the readability.
+
+#+begin_src emacs-lisp :tangle config.el
+
+(defun duramacs/runcmd (ctx cmd)
+  (start-process-shell-command ctx nil cmd))
+
+(defun duramacs/runshortcut (cmd)
+  (duramacs/runcmd "duramacs/command" cmd))
+
+(defun duramacs/runhook (cmd)
+  (duramacs/runcmd "duramacs/hook" cmd))
+#+end_src
+
 #+begin_src emacs-lisp :tangle config.el
 
 (defun duramacs/exwm-update-class ()
