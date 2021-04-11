@@ -354,6 +354,11 @@ Our configuration begins with
 
 ** EXWM
 
+#+begin_src emacs-lisp :tangle packages.el
+(package! exwm)
+(package! exwm-edit)
+#+end_src
+
 #+begin_src emacs-lisp :tangle config.el
 (map! :leader
       (:prefix ("e" . "environment")
@@ -425,6 +430,8 @@ Our configuration begins with
   (add-hook 'exwm-update-class-hook
             #'duramacs/exwm-update-class))
 
+(use-package! exwm-edit)
+
 (require 'exwm-randr)
 (setq exwm-randr-workspace-monitor-plist '(0 "eDP-1" 1 "DP-1"))
 (add-hook 'exwm-randr-screen-change-hook
@@ -436,19 +443,6 @@ Our configuration begins with
 (if (getenv "XDG_RUNTIME_DIR")
     (exwm-init)
   (message "(Duramacs) Not in a X environment, EXWM is not initiated."))
-#+end_src
-
-#+RESULTS:
-
-** Packages
-
-#+begin_src emacs-lisp :tangle packages.el
-(package! treemacs-all-the-icons)
-(package! all-the-icons-ivy)
-(package! exwm-x)
-(package! exwm-edit)
-(package! dmenu)
-(package! vue-mode)
 #+end_src
 
 ** Appearance
