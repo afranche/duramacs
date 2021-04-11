@@ -455,10 +455,9 @@ keep the keybindings free of lambdas cluttering the readability.
           (lambda()
             (start-process-shell-command
              "xrandr" nil "xrandr --output DP-1 --right-of eDP-1 --auto")))
-(exwm-randr-enable)
 
-(if (getenv "XDG_RUNTIME_DIR")
-    (exwm-init)
-  (message "(Duramacs) Not in a X environment, EXWM is not initiated."))
+(when (display-graphic-p)
+  (message "Initiating exwm-randr and exwm.")
+  (exwm-randr-enable)
+  (exwm-init))
 #+end_src
-
