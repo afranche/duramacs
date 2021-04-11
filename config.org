@@ -380,12 +380,38 @@ Our configuration begins with
       user-mail-address "tobia@crossbone.cc")
 #+end_src
 
-** EXWM
+** Window Management
+
+[[https://github.com/ch11ng/exwm/]]
+
+Window Management is the beating heart of the config, it gives meaning to
+spending so much time configuring to get Emacs to become one good tool to
+use. Because Emacs is my window manager and makes a buffer available to me
+at all time, it is how I use it everyday for organizing myself and other
+tasks.
 
 #+begin_src emacs-lisp :tangle packages.el
 (package! exwm)
 (package! exwm-edit)
 #+end_src
+
+#+begin_src emacs-lisp :tangle config.el
+(use-package! exwm)
+(use-package! exwm-edit)
+
+;; 1 screen = 1 workspace, at least that's how I work
+(setq exwm-workspace-number 2)
+
+;; X Windows related buffers are named "*EXWM*" by default.
+;; We can call a hook to rename the buffers by the class name of the window.
+(defun duramacs/rename-xwindow-buffers ()
+  (exwm-workspace-rename-buffer exwm-class-name))
+
+(add-hook 'exwm-update-class-hook
+          #'duramacs/rename-xwindow-buffers)
+#+end_src
+
+*** Shortcuts
 
 To run commands, I prefer to define shortcuts functions in order to
 keep the keybindings free of lambdas cluttering the readability.
@@ -401,26 +427,22 @@ keep the keybindings free of lambdas cluttering the readability.
 (defun duramacs/runhook (cmd)
   (duramacs/runcmd "duramacs/hook" cmd))
 
-;; Set the hook function to run when a screen is plugged.
-;; TODO: Use autorandr to choose between setups.
-(defun duramacs/set-xrandr ()
-  (duramacs/runhook "xrandr --output DP-1 --right-of eDP-1 --auto"))
-#+end_src
-
-#+begin_src emacs-lisp :tangle config.el
-
-(defun duramacs/exwm-update-class ()
-  (exwm-workspace-rename-buffer exwm-class-name))
 
 (defun duramacs/create-firefox-profile-after-new-project ()
   (start-process-shell-command "firefox" nil (concat "firefox -CreateProfile -no-remote " (projectile-project-name))))
 
 (add-hook 'projectile-after-switch-project-hook 'duramacs/create-firefox-profile-after-new-project)
+#+end_src
 
-;;(defun duramacs/create-firefox-profile-on-new-project)
+*** Keybindings
 
-(use-package! exwm :ensure t)
-(setq exwm-workspace-number 2)
+Can't go wrong with the proper keybindings. The keybindings are mainly
+targeted at managing my EXWM environment(s), otherwise I'm using Emacs
+under WSL2 on Windows (so tty, no environment) => No need to modify my
+keybindings in this case, even to add some.
+
+#+begin_src emacs-lisp :tangle config.el
+
 (setq exwm-input-global-keys
       `(
         ([?\s-r] . counsel-linux-app)
@@ -449,15 +471,28 @@ keep the keybindings free of lambdas cluttering the readability.
         ([XF86MonBrightnessDown] . (lambda () (interactive) (duramacs/runshortcut "light -U 20")))
         ([XF86MonBrightnessUp] . (lambda () (interactive) (duramacs/runshortcut "light -A 20")))
         ))
-(add-hook 'exwm-update-class-hook
-          #'duramacs/exwm-update-class)
+#+end_src
 
-(use-package! exwm-edit)
+*** RandR
+
+/laughs in dual-screen/
+
+#+begin_src emacs-lisp :tangle config.el
 
 (require 'exwm-randr)
 
+;; Set the hook function to run when a screen is plugged.
+;; TODO: Use autorandr to choose between setups.
+(defun duramacs/set-xrandr ()
+  (duramacs/runhook "xrandr --output DP-1 --right-of eDP-1 --auto"))
+
 (setq exwm-randr-workspace-monitor-plist '(0 "eDP-1" 1 "DP-1"))
 (add-hook 'exwm-randr-screen-change-hook (lambda () (duramacs/set-xrandr)))
+#+end_src
+
+*** Enable the configuration
+
+#+begin_src emacs-lisp :tangle config.el
 
 (when (display-graphic-p)
   (message "Initiating exwm-randr and exwm.")
