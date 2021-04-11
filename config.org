@@ -400,6 +400,11 @@ keep the keybindings free of lambdas cluttering the readability.
 
 (defun duramacs/runhook (cmd)
   (duramacs/runcmd "duramacs/hook" cmd))
+
+;; Set the hook function to run when a screen is plugged.
+;; TODO: Use autorandr to choose between setups.
+(defun duramacs/set-xrandr ()
+  (duramacs/runhook "xrandr --output DP-1 --right-of eDP-1 --auto"))
 #+end_src
 
 #+begin_src emacs-lisp :tangle config.el
@@ -450,11 +455,9 @@ keep the keybindings free of lambdas cluttering the readability.
 (use-package! exwm-edit)
 
 (require 'exwm-randr)
+
 (setq exwm-randr-workspace-monitor-plist '(0 "eDP-1" 1 "DP-1"))
-(add-hook 'exwm-randr-screen-change-hook
-          (lambda()
-            (start-process-shell-command
-             "xrandr" nil "xrandr --output DP-1 --right-of eDP-1 --auto")))
+(add-hook 'exwm-randr-screen-change-hook (lambda () (duramacs/set-xrandr)))
 
 (when (display-graphic-p)
   (message "Initiating exwm-randr and exwm.")
