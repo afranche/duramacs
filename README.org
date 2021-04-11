@@ -12,7 +12,7 @@
 Duramacs is an Emacs configuration for it to be a general productivity tool,
 becoming a window manager when run graphically. It makes use of [[https://github.com/hlissner/doom-emacs][Doom Emacs]] to
 keep the configuration minimalistic and simple for people who are starting Emacs.
-I do.
+I do. The name makes reference to the Duramax V8 engine.
 
 A wise warning would be to tell you this is a very early configuration, there's
 probably a lot more better ways to do some things in this configuration and to
