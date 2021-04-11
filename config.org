@@ -10,11 +10,32 @@
 
 ** Introduction
 
-Welcome to my emacs configuration ! I use emacs as my window manager and general
-swiss-knife tools for development stuff I do behind a computer. This configuration
-is heavily borrowed from [[gitlab.com/zzamboni/dot-doom]]. If you seek to learn how to
-produce yourself a nice and tidy Orgified emacs configuration, I suggest you take
-a look at his configuration. Oh and it's running using [[github.com/hlissner/doom-emacs]].
+Welcome to my emacs configuration ! I use emacs as my window manager and
+general swiss-knife tools for development stuff I do behind a computer.
+
+This configuration is heavily borrowed from [[gitlab.com/zzamboni/dot-doom]].
+If you seek to learn how to produce yourself a nice and tidy Orgified emacs
+configuration, I suggest you take a look at his configuration. Oh and it's
+running using [[github.com/hlissner/doom-emacs]].
+
+** Rationales
+
+*** Doom Emacs ?
+
+Avoiding Boilerplate stuff + the lack of skills. I left Vim for Emacs
+as I really dug out the possibilities behind ELisp for configuring my
+text ed. As it was a recent move, I still have to learn ELisp, hence
+using doom-emacs to soften the learning curve (or to lie to myself
+pretending I know Emacs :D). Given doom-emacs is a vimified Emacs that
+pleases the crowd, here it is.
+
+*** Emacs as a Window Manager ?
+
+I use EXWM to manage my X11 windows. The reason for that is I think that
+on my daily work, I always need a text editor lying around for note-keeping,
+coding, etc... Emacs allows me to gather those tasks in one friendly
+environment (well /friendly/...) with all of my cool shortcuts on (even) X11
+apps.
 
 ** Config file headers
 
