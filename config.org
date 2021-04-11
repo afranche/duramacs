@@ -336,11 +336,18 @@ Our configuration begins with
        (default +bindings +smartparens))
 #+end_src
 
-** Font
+** Appearance
+
+*** Graphical interface
+
+/shrieks in Nord Theme/
 
 #+begin_src emacs-lisp :tangle config.el
 (setq doom-font (font-spec :family "Cascadia Code" :size 15))
 (setq doom-big-font (font-spec :family "Cascadia Code" :size 21))
+(setq doom-theme 'doom-nord)
+
+(set-frame-parameter (selected-frame) 'alpha '(87 . 65))
 #+end_src
 
 ** Identity
@@ -445,8 +452,3 @@ Our configuration begins with
   (message "(Duramacs) Not in a X environment, EXWM is not initiated."))
 #+end_src
 
-** Appearance
-
-#+begin_src emacs-lisp :tangle config.el
-(set-frame-parameter (selected-frame) 'alpha '(87 . 65))
-#+end_src
