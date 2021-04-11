@@ -388,12 +388,6 @@ Our configuration begins with
 #+end_src
 
 #+begin_src emacs-lisp :tangle config.el
-(map! :leader
-      (:prefix ("e" . "environment")
-       :desc "Run command" "r" #'counsel-linux-app))
-(map! :leader
-      (:prefix ("e" . "environment")
-       :desc "Lock" "l" #'(shell-command "betterlockscreen -l dimblur")))
 
 (defun duramacs/exwm-update-class ()
   (exwm-workspace-rename-buffer exwm-class-name))
