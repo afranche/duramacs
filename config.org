@@ -25,6 +25,7 @@ running using [[github.com/hlissner/doom-emacs]].
   - [[#appearance][Appearance]]
     - [[#graphical-interface][Graphical interface]]
   - [[#identity][Identity]]
+  - [[#vuejs][Vue.js]]
   - [[#window-management][Window Management]]
     - [[#shortcuts][Shortcuts]]
     - [[#firefox][Firefox]]
@@ -280,7 +281,7 @@ Our configuration begins with
        (eval +overlay)     ; run code, run (also, repls)
        gist                ; interacting with github gists
        lookup              ; navigate your code and its documentation
-       (lsp +eglot)
+       lsp
        magit               ; a git porcelain for Emacs
        make                ; run make tasks from Emacs
        ;;pass              ; password manager for nerds
@@ -392,6 +393,31 @@ Our configuration begins with
 ;; TODO: Fetch identity from elsewhere
 (setq user-full-name "Anouar Aissaoui"
       user-mail-address "tobia@crossbone.cc")
+#+end_src
+
+** Vue.js
+
+I work with Vue.Js when I need to do front-end apps. I've stumbled upon
+[[https://azzamsa.com/n/vue-emacs/]] to get my configuration to work properly.
+
+#+begin_src emacs-lisp :tangle packages.el
+(package! vue-mode)
+#+end_src
+
+#+begin_src emacs-lisp :tangle config.el
+(use-package! lsp-mode
+  :custom
+  (lsp-vetur-format-default-formatter-css "none")
+  (lsp-vetur-format-default-formatter-html "none")
+  (lsp-vetur-format-default-formatter-js "none")
+  (lsp-vetur-validation-template nil))
+
+(use-package vue-mode
+  :mode "\\.vue\\'"
+  :hook (vue-mode . prettier-js-mode)
+  :config
+  (add-hook 'vue-mode-hook #'lsp)
+  (setq prettier-js-args '("--parser vue")))
 #+end_src
 
 ** Window Management
